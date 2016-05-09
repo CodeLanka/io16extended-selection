@@ -1,4 +1,4 @@
-package org.gdgsrilanka.org.gdgsrilanka.models;
+package org.gdgsrilanka.models;
 
 import org.gdgsrilanka.select.SelectionWeights;
 
@@ -11,7 +11,7 @@ public class Participant {
     private String nic;
 
     private int ioParticipations = 0;
-
+    private int rsvpWeight = 0;
     private boolean hasIdeamartApps = false;
     private boolean hasPlayStoreApps = false;
 
@@ -78,11 +78,32 @@ public class Participant {
         this.nic = nic;
     }
 
+    public int getRsvpWeight() {
+        return rsvpWeight;
+    }
+
+    public void setRsvpWeight(int rsvpWeight) {
+        this.rsvpWeight = rsvpWeight;
+    }
+
     public int getIoParticipations() {
         return ioParticipations;
     }
 
     public void setIoParticipations(int ioParticipations) {
         this.ioParticipations = ioParticipations;
+    }
+
+    @Override
+    public String toString() {
+
+        String info = String.format("%s [%s]\nIOs: %d\nIdeamart: %s\tPlaystore: %s",
+                name,
+                nic,
+                ioParticipations,
+                (hasIdeamartApps) ? "Yes" : "No",
+                (hasPlayStoreApps) ? "Yes": "No");
+
+        return info;
     }
 }

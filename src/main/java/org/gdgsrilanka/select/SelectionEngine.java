@@ -1,6 +1,6 @@
 package org.gdgsrilanka.select;
 
-import org.gdgsrilanka.org.gdgsrilanka.models.Participant;
+import org.gdgsrilanka.models.Participant;
 
 import java.util.List;
 
@@ -11,4 +11,5 @@ public interface SelectionEngine {
 
     public List<Participant> processList(List<Participant> participantList);
     public boolean isProcessingComplete();
+    public List<Participant> getSelectedList();
 }

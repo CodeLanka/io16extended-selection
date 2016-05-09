@@ -1,10 +1,7 @@
 package org.gdgsrilanka.select;
 
-import org.gdgsrilanka.RandomSelection;
-import org.gdgsrilanka.org.gdgsrilanka.models.Participant;
+import org.gdgsrilanka.models.Participant;
 import org.gdgsrilanka.select.prime.Generator;
-import org.gdgsrilanka.select.prime.PrimeCheck;
-import sun.security.jgss.wrapper.GSSNameElement;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -22,23 +19,35 @@ public class SelectionEnginePrimeImpl implements SelectionEngine {
     private List<Participant> selectedList;
     private boolean processingDone = false;
 
-    public SelectionEnginePrimeImpl(List<Participant> participants) {
-        this.participants = participants;
+    private ThreadPoolExecutor executor;
+    public SelectionEnginePrimeImpl() {
         this.selectedList = new ArrayList<Participant>();  //FIXME I am not thread safe
     }
 
+
+    /**
+     * Processes the participants in threads. ALWAYS returns null. Check with isrocessingComplete() to get the results.
+     * @param participantList
+     * @return
+     */
     public List<Participant> processList(List<Participant> participantList) {
 
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(100, 300, 10, TimeUnit.MINUTES, new ArrayBlockingQueue<Runnable>(4000));
+        executor = new ThreadPoolExecutor(100, 300, 10, TimeUnit.MINUTES, new ArrayBlockingQueue<Runnable>(4000));
         for (Participant participant : participantList) {
             ParticipantSelector selector = new ParticipantSelector(participant);
             executor.execute(selector);
         }
+
         return null;
     }
 
     public boolean isProcessingComplete() {
-        return false;
+        return !(executor.getActiveCount() > 0);
+    }
+
+
+    public List<Participant> getSelectedList() {
+        return selectedList;
     }
 
 
