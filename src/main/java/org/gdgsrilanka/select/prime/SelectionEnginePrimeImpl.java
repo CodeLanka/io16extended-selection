@@ -1,6 +1,7 @@
-package org.gdgsrilanka.select;
+package org.gdgsrilanka.select.prime;
 
 import org.gdgsrilanka.models.Participant;
+import org.gdgsrilanka.select.SelectionEngine;
 import org.gdgsrilanka.select.prime.Generator;
 
 import java.math.BigInteger;
@@ -30,7 +31,7 @@ public class SelectionEnginePrimeImpl implements SelectionEngine {
      * @param participantList
      * @return
      */
-    public List<Participant> processList(List<Participant> participantList) {
+    public void processList(List<Participant> participantList) {
 
         executor = new ThreadPoolExecutor(100, 300, 10, TimeUnit.MINUTES, new ArrayBlockingQueue<Runnable>(4000));
         for (Participant participant : participantList) {
@@ -38,7 +39,6 @@ public class SelectionEnginePrimeImpl implements SelectionEngine {
             executor.execute(selector);
         }
 
-        return null;
     }
 
     public boolean isProcessingComplete() {

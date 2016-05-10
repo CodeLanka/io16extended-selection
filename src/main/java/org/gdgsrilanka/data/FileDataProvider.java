@@ -13,7 +13,9 @@ public class FileDataProvider implements DataProvider {
 
     public FileDataProvider(String fileName) {
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+            File f = new File(fileName);
+            System.out.println(f.getAbsolutePath());
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

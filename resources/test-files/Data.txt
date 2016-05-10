@@ -1,2 +1,5 @@
 Tharaka Devinda|842150027V|3|5|yes|yes
 Raveen Harith|99874587V|1|0|no|yes
+Pamuditha Imalka|99874587V|2|4|no|yes
+Lahiru Madhushanka|99874587V|0|10|yes|yes
+Prashan Lankapura|99874587V|3|10|yes|yes
