@@ -74,7 +74,7 @@ public class SelectionEngineOnesCountImpl implements SelectionEngine {
 
 
             }
-            System.out.println(participant.getName() + " primed "+ primedIterations + " from "+ awardedIterations);
+            //System.out.println(participant.getName() + " primed "+ primedIterations + " from "+ awardedIterations);
             if (primedIterations > (awardedIterations / 4)) {
                 System.out.println(participant.getName() + " just got selected");
                 selectedList.add(participant);

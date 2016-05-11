@@ -14,7 +14,7 @@ public class Generator {
     }
 
     public BigInteger getValueFromHash(String hash) {
-        System.out.println(hash);
+        //System.out.println(hash);
         return new BigInteger(hash, 16);
 
     }

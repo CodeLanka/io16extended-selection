@@ -7,6 +7,8 @@ import org.gdgsrilanka.select.SelectionEngine;
 import org.gdgsrilanka.select.ones.SelectionEngineOnesCountImpl;
 import org.gdgsrilanka.select.prime.SelectionEnginePrimeImpl;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class RandomSelection {
     public static void main(String[] args) {
 
         DataProvider provider = new FileDataProvider("resources/test-files/Data.txt");
+
         List<Participant> participants = new ArrayList<Participant>();
 
         Participant current = null;
@@ -45,10 +48,21 @@ public class RandomSelection {
 
 
         System.out.println("selection complete. these are the lucky ones;");
-        List<Participant> selected = engine.getSelectedList();
-        for (Participant p : selected) {
-            System.out.println(p.toString());
+        try {
+            PrintWriter writer = new PrintWriter("resources/test-files/Output.txt");
+            List<Participant> selected = engine.getSelectedList();
+            for (Participant p : selected) {
+                System.out.println(p.toString());
+                writer.println(p.getNic());
+            }
+
+            writer.close();
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+
 
     }
 }
