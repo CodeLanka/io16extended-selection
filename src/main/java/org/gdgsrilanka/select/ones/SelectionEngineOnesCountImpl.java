@@ -49,6 +49,7 @@ public class SelectionEngineOnesCountImpl implements SelectionEngine {
 
             //don't select already rated participants
             if (participant.getEventRating() > 0) {
+                //System.out.println("removed-starred");
                 return;
             }
             int awardedIterations = participant.getEligibleIterations();

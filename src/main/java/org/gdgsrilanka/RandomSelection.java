@@ -35,11 +35,16 @@ public class RandomSelection {
             System.out.println(current);
         }*/
 
-
+        int starred = 0;
         while((current = provider.getParticipant()) != null) {
             //System.out.println(current.toString());
+            if (current.getEventRating() != 0) {
+                starred++;
+            }
             participants.add(current);
         }
+
+        System.out.println("Starred = " + starred);
 
 //        SelectionEngine engine = new SelectionEnginePrimeImpl();
         SelectionEngine engine = new SelectionEngineOnesCountImpl();
