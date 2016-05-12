@@ -31,7 +31,7 @@ public class FileDataProvider implements DataProvider {
                 String[] data = entry.split("\\|");
                 Participant participant = new Participant();
                 participant.setName(data[0]);
-                participant.setNic(data[1]);
+                participant.setEmail(data[1]);
                 participant.setIoParticipations(Integer.parseInt(data[2]));
                 participant.setRsvpWeight(Integer.parseInt(data[3]));
                 participant.setHasIdeamartApps(data[4].matches("yes"));

@@ -8,21 +8,24 @@ import org.gdgsrilanka.select.SelectionWeights;
 public class Participant {
 
     private String name;
-    private String nic;
+    private String email;
 
     private int ioParticipations = 0;
     private int rsvpWeight = 0;
+    private int eventRating = 0;
     private boolean hasIdeamartApps = false;
     private boolean hasPlayStoreApps = false;
 
 
-    public Participant(String name, String nic, int ioParticipations, boolean ideamart, boolean playStore) {
+    public Participant(String name, String email, int ioParticipations, boolean ideamart, boolean playStore, int rsvpWeight) {
         this.name = name;
-        this.nic = nic;
+        this.email = email;
 
         this.ioParticipations = ioParticipations;
         this.hasIdeamartApps = ideamart;
         this.hasPlayStoreApps = playStore;
+
+        this.rsvpWeight = rsvpWeight;
     }
 
     public Participant() {
@@ -42,7 +45,12 @@ public class Participant {
             totalAwardedIterations += SelectionWeights.PLAYSTORE_AWARD;
         }
 
-        return totalAwardedIterations;
+        int awardsAfterRSVP = totalAwardedIterations + (int) (rsvpWeight / SelectionWeights.RSVP_NORMALIZATION_WEIGHT);
+        if(awardsAfterRSVP < 0) {
+            totalAwardedIterations = 0;
+        }
+
+        return awardsAfterRSVP;
     }
 
 
@@ -70,12 +78,12 @@ public class Participant {
         this.name = name;
     }
 
-    public String getNic() {
-        return nic;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNic(String nic) {
-        this.nic = nic;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getRsvpWeight() {
@@ -94,15 +102,26 @@ public class Participant {
         this.ioParticipations = ioParticipations;
     }
 
+    public int getEventRating() {
+        return eventRating;
+    }
+
+    public void setEventRating(int eventRating) {
+        this.eventRating = eventRating;
+    }
+
     @Override
     public String toString() {
 
-        String info = String.format("%s [%s]\nIOs: %d\nIdeamart: %s\tPlaystore: %s",
+        String info = String.format("%s [%s] {i: %d %d Star}\nIOs: %d\tIdeamart: %s\tPlaystore: %s\tRSVP=%d",
                 name,
-                nic,
+                email,
+                getEligibleIterations(),
+                getEventRating(),
                 ioParticipations,
                 (hasIdeamartApps) ? "Yes" : "No",
-                (hasPlayStoreApps) ? "Yes": "No");
+                (hasPlayStoreApps) ? "Yes": "No",
+                rsvpWeight);
 
         return info;
     }
