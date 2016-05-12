@@ -24,7 +24,7 @@ public class RandomSelection {
     public static void main(String[] args) {
 
 //        DataProvider provider = new FileDataProvider("resources/test-files/Data.txt");
-        DataProvider provider = new JSONFileDataProvider("resources/test-files/responses-1.json");
+        DataProvider provider = new JSONFileDataProvider("resources/test-files/GoogleIOResponses.json");
 
         List<Participant> participants = new ArrayList<Participant>();
 
