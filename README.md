@@ -4,10 +4,15 @@
 This is the selection algorithm for the registered users for Google IO 2016 extended Sri Lanka.
 
 All registrants are given weights for the following attributes
+
 General weight = 7
+
 For each previous IO participation = 1
+
 For having an app in ideamart = 7
+
 For having an app in the playstore = 7
+
 
 In addition to this, a score from RSVP.lk is added to this but normalized by dividing by 2.
 The RSVP.lk score reflects your previous GDG event participation. This score can be negative. 
