@@ -58,7 +58,14 @@ public class JSONFileDataProvider implements DataProvider {
                     entry.getBoolean("ideamart"),
                     entry.getBoolean("playstore"),
                     entry.getInt("score"));
+
+            //set the non-constructed vars which were later added
             participant.setEventRating(entry.getInt("event_rating"));
+            participant.setId(entry.getString("id"));
+            participant.setInstitute(entry.getString("institute"));
+            participant.setNic(entry.getString("nic"));
+            participant.setContact(entry.getString("contact"));
+            participant.setGender(entry.getString("gender"));
 
             currentArrayPosition++;
             return participant;
@@ -75,14 +82,33 @@ public class JSONFileDataProvider implements DataProvider {
      */
     private JSONObject parseParticipantEntry(JSONObject object) {
         JSONObject out = new JSONObject();
+        out.put("id", object.get("id"));
         out.put("name", object.get("name"));
         out.put("email", object.get("email"));
         out.put("score", object.getInt("score"));
         out.put("event_rating", object.getInt("event_rating"));
+        out.put("nic", object.get("nic"));
+        out.put("gender", object.get("gender"));
+
 
         String responseString = object.getString("response");
 
         JSONArray responseStringArray = new JSONArray(responseString.replaceAll("\\\\", ""));
+
+        JSONObject contactObj = selectJSONWithName("3", responseStringArray);
+        if(contactObj != null) {
+            out.put("contact",contactObj.getString("value"));
+        } else {
+            out.put("contact", "");
+        }
+
+        JSONObject instituteObj = selectJSONWithName("4", responseStringArray);
+        if(instituteObj != null) {
+            out.put("institute",instituteObj.getString("value"));
+        } else {
+            out.put("institute", "");
+        }
+
         JSONObject ideamartObj = selectJSONWithName("11", responseStringArray);
         if(ideamartObj != null) {
             out.put("ideamart",
