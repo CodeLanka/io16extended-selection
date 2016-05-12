@@ -29,10 +29,23 @@ public class RandomSelection {
         List<Participant> participants = new ArrayList<Participant>();
 
         Participant current = null;
+
+        /*for (int i = 0; i < 10; i++) {
+            current = provider.getParticipant();
+            System.out.println(current);
+        }*/
+
+        int starred = 0;
         while((current = provider.getParticipant()) != null) {
-            System.out.println(current.toString());
+            //System.out.println(current.toString());
+            if (current.getEventRating() != 0) {
+                starred++;
+            }
             participants.add(current);
         }
+
+        System.out.println("Starred = " + starred);
+
 //        SelectionEngine engine = new SelectionEnginePrimeImpl();
         SelectionEngine engine = new SelectionEngineOnesCountImpl();
         engine.processList(participants);
@@ -65,6 +78,7 @@ public class RandomSelection {
             e.printStackTrace();
         }
 
+        return;
 
     }
 }
