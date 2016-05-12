@@ -1,18 +1,19 @@
-# Google IO Extended 2016 Sri Lanka
-## participants selection algorithm
+# Google IO 2016 Extended Sri Lanka
+## Participants selection algorithm
 
-This is the selection algorithm for the registered users for I/O extended 2016 Sri Lanka.
+This is the selection algorithm for the registered users for Google IO 2016 extended Sri Lanka.
 
 All registrants are given weights for the following attributes
-General weight = 7
-For each previous IO participation = 1
-For having an app in ideamart = 7
-For having an app in the playstore = 7
 
-In addition to this, a score from RSVP is added to this but normalized by dividing by 2.
-The RSVP score reflects your previous GDG event participation. This score can be negative. 
-Negative marks are added for participants who registered, RSVP'ed yes and did not participate for events.
+- General weight = 7
+- For each previous IO participation = 1
+- For having an app in ideamart = 7
+- For having an app in the playstore = 7
 
+
+In addition to this, a score from RSVP.lk is added to this but normalized by dividing by 2.
+The RSVP.lk score reflects your previous GDG event participation. This score can be negative. 
+Negative marks are added for participants who registered, RSVP'ed `Yes` and did not participate for events.
 
 The weights are accumulated (say W) and then the algo is run W times.
 
