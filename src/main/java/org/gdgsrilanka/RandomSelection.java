@@ -68,7 +68,16 @@ public class RandomSelection {
             System.out.println(selected.size() + " people selected out of "+ participants.size());
             for (Participant p : selected) {
                 //System.out.println(p.toString());
-                writer.println(p.getEmail());
+                writer.println(
+                        String.format("%s,%s,%s,%s,%s,%s,%s",
+                                p.getId(),
+                                p.getEmail(),
+                                p.getName(),
+                                p.getContact(),
+                                p.getNic(),
+                                p.getGender(),
+                                p.getInstitute()));
+
             }
             writer.flush();
             writer.close();

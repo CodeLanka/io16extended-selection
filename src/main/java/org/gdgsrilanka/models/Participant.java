@@ -7,8 +7,14 @@ import org.gdgsrilanka.select.SelectionWeights;
  */
 public class Participant {
 
+    private String id;
     private String name;
     private String email;
+    private String nic;
+
+    private String contact;
+    private String gender;
+    private String institute;
 
     private int ioParticipations = 0;
     private int rsvpWeight = 0;
@@ -108,6 +114,46 @@ public class Participant {
 
     public void setEventRating(int eventRating) {
         this.eventRating = eventRating;
+    }
+
+    public String getInstitute() {
+        return institute;
+    }
+
+    public void setInstitute(String institute) {
+        this.institute = institute;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     @Override
