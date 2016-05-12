@@ -29,10 +29,18 @@ public class RandomSelection {
         List<Participant> participants = new ArrayList<Participant>();
 
         Participant current = null;
+
+        /*for (int i = 0; i < 10; i++) {
+            current = provider.getParticipant();
+            System.out.println(current);
+        }*/
+
+
         while((current = provider.getParticipant()) != null) {
-            System.out.println(current.toString());
+            //System.out.println(current.toString());
             participants.add(current);
         }
+
 //        SelectionEngine engine = new SelectionEnginePrimeImpl();
         SelectionEngine engine = new SelectionEngineOnesCountImpl();
         engine.processList(participants);
@@ -65,6 +73,7 @@ public class RandomSelection {
             e.printStackTrace();
         }
 
+        return;
 
     }
 }

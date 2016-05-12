@@ -50,7 +50,6 @@ public class JSONFileDataProvider implements DataProvider {
     public Participant getParticipant() {
         if(currentArrayPosition < responsesArray.length()) {
             JSONObject entry = parseParticipantEntry(responsesArray.getJSONObject(currentArrayPosition));
-            //System.out.println(entry.toString());
 
             Participant participant = new Participant(
                     entry.getString("name"),
@@ -59,6 +58,7 @@ public class JSONFileDataProvider implements DataProvider {
                     entry.getBoolean("ideamart"),
                     entry.getBoolean("playstore"),
                     entry.getInt("score"));
+            participant.setEventRating(entry.getInt("event_rating"));
 
             currentArrayPosition++;
             return participant;
@@ -77,7 +77,8 @@ public class JSONFileDataProvider implements DataProvider {
         JSONObject out = new JSONObject();
         out.put("name", object.get("name"));
         out.put("email", object.get("email"));
-        out.put("score", object.getInt("event_rating"));
+        out.put("score", object.getInt("score"));
+        out.put("event_rating", object.getInt("event_rating"));
 
         String responseString = object.getString("response");
 

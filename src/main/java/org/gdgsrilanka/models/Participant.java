@@ -12,6 +12,7 @@ public class Participant {
 
     private int ioParticipations = 0;
     private int rsvpWeight = 0;
+    private int eventRating = 0;
     private boolean hasIdeamartApps = false;
     private boolean hasPlayStoreApps = false;
 
@@ -49,7 +50,7 @@ public class Participant {
             totalAwardedIterations = 0;
         }
 
-        return totalAwardedIterations;
+        return awardsAfterRSVP;
     }
 
 
@@ -101,13 +102,22 @@ public class Participant {
         this.ioParticipations = ioParticipations;
     }
 
+    public int getEventRating() {
+        return eventRating;
+    }
+
+    public void setEventRating(int eventRating) {
+        this.eventRating = eventRating;
+    }
+
     @Override
     public String toString() {
 
-        String info = String.format("%s [%s] {i: %d}\nIOs: %d\tIdeamart: %s\tPlaystore: %s\tRSVP=%d",
+        String info = String.format("%s [%s] {i: %d %d Star}\nIOs: %d\tIdeamart: %s\tPlaystore: %s\tRSVP=%d",
                 name,
                 email,
                 getEligibleIterations(),
+                getEventRating(),
                 ioParticipations,
                 (hasIdeamartApps) ? "Yes" : "No",
                 (hasPlayStoreApps) ? "Yes": "No",

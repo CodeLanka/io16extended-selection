@@ -2,6 +2,7 @@ package org.gdgsrilanka.select.ones;
 
 import org.gdgsrilanka.models.Participant;
 import org.gdgsrilanka.select.SelectionEngine;
+import org.gdgsrilanka.select.SelectionWeights;
 import org.gdgsrilanka.select.prime.Generator;
 
 import java.math.BigInteger;
@@ -45,6 +46,11 @@ public class SelectionEngineOnesCountImpl implements SelectionEngine {
         }
 
         public void run() {
+
+            //don't select already rated participants
+            if (participant.getEventRating() > 0) {
+                return;
+            }
             int awardedIterations = participant.getEligibleIterations();
 
             Generator genny = new Generator();
@@ -65,18 +71,14 @@ public class SelectionEngineOnesCountImpl implements SelectionEngine {
 
                 BigInteger remainder = currentValue.remainder(new BigInteger(onesCount + ""));
                 if (remainder.isProbablePrime(5)) {
-                    /*isSelected = true;
-                    System.out.println(participant.getName() + " just got selected");
-                    selectedList.add(participant);
-                    break;*/
                     primedIterations++;
                 }
 
 
             }
             //System.out.println(participant.getName() + " primed "+ primedIterations + " from "+ awardedIterations);
-            if (primedIterations > (awardedIterations / 4)) {
-                //System.out.println(participant.getName() + " just got selected");
+
+            if (primedIterations > (awardedIterations / SelectionWeights.PRIME_SELECTED_PORTION_DIVIDER)) {
                 selectedList.add(participant);
 
             } else {
