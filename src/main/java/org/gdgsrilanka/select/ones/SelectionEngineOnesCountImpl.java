@@ -21,7 +21,7 @@ public class SelectionEngineOnesCountImpl implements SelectionEngine {
     private boolean isComplete = false;
 
     public void processList(List<Participant> participantList) {
-        executor = new ThreadPoolExecutor(100, 300, 10, TimeUnit.MINUTES, new ArrayBlockingQueue<Runnable>(4000));
+        executor = new ThreadPoolExecutor(100, 300, 10, TimeUnit.MINUTES, new ArrayBlockingQueue<Runnable>(5000));
 
         for (Participant p : participantList) {
             executor.execute(new ParticipantSelector(p));
@@ -76,13 +76,13 @@ public class SelectionEngineOnesCountImpl implements SelectionEngine {
             }
             //System.out.println(participant.getName() + " primed "+ primedIterations + " from "+ awardedIterations);
             if (primedIterations > (awardedIterations / 4)) {
-                System.out.println(participant.getName() + " just got selected");
+                //System.out.println(participant.getName() + " just got selected");
                 selectedList.add(participant);
 
             } else {
-                System.out.println(String.format("%s is not selected after %d tries",
+                /*System.out.println(String.format("%s is not selected after %d tries",
                         this.participant.getName(),
-                        awardedIterations));
+                        awardedIterations));*/
             }
         }
     }
